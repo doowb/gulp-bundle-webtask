@@ -9,7 +9,25 @@ var browserify = require('browserify');
 var extend = require('extend-shallow');
 var source = require('vinyl-source-stream');
 
-module.exports = function(filepath, filename, options) {
+/**
+ * Use [browserify][], [gulp-uglify][], and defaults for the browserify commandline `node` flag to bundle source code for a [webtask][]
+ * task. This will exclude any npm modules that are already include on the webtask servers.
+ *
+ * ```js
+ * gulp.task('bundle', function() {
+ *   return bundle('index.js')
+ *     .pipe(gulp.dest('dist'));
+ * });
+ * ```
+ * @param  {String} `filepath` Source filepath for the entry point of the bundled application.
+ * @param  {String} `filename` Filename to use when naming the bundled file. Defaults to `bundle.js`.
+ * @param  {String} `options` Additional options to pass to [browserify][].
+ * @param  {String} `options.cwd` Specify a `cwd` to use when resolving the `filepath` and as the base path for the `filename`. Defaults to `process.cwd()`.
+ * @return {Stream} Returns a stream that can be piped to (as in the example).
+ * @api public
+ */
+
+module.exports = function bundle(filepath, filename, options) {
   if (typeof filename === 'object') {
     options = filename;
     filename = 'bundle.js';
