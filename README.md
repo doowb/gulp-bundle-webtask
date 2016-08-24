@@ -13,8 +13,20 @@ $ npm install --save gulp-bundle-webtask
 ## Usage
 
 ```js
+var gulp = require('gulp');
 var bundle = require('gulp-bundle-webtask');
+
+gulp.task('default', function() {
+  return bundle('index.js')
+    .pipe(gulp.dest('dist'));
+});
 ```
+
+## Why use this?
+
+[Webtask.io](https://webtask.io) is a server that lets developers publish code to an endpoint that will be executed. They provide a [curated list of npm modules](https://tehsis.github.io/webtaskio-canirequire/) that can be used by default, but not every module is available. A developer can use [browserify](https://github.com/substack/node-browserify) and the `node` flag to bundle their code and publish the bundled code to [webtask](https://github.com/auth0/webtask-js) but this will bundle all of the included modules (even the ones that webtask already supplies).
+
+This plugin will provide the default options that match the `node` flag from the [browserify](https://github.com/substack/node-browserify) command line argument and exclude modules that are already supplied by webtask. This makes it easier to bundle and deploy code to webtask.io in a [gulp](http://gulpjs.com), [assemble](https://github.com/assemble/assemble), [generate](https://github.com/generate/generate), or [verb](https://github.com/verbose/verb) workflow.
 
 ## API
 
