@@ -38,14 +38,17 @@
     "mocha": "^3.0.2"
   },
   "keywords": [
+    "assemble",
     "browserify",
     "bundle",
+    "generate",
     "gulp",
     "gulp-plugin",
     "gulp-uglify",
     "gulpplugin",
     "plugin",
     "uglify",
+    "verb",
     "webtask"
   ],
   "verb": {
@@ -68,7 +71,10 @@
       "gulp-uglify",
       "verb",
       "verb-generate-readme",
-      "webtask"
+      "webtask",
+      "assemble",
+      "generate",
+      "gulp"
     ]
   }
 }
