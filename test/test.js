@@ -3,7 +3,6 @@
 require('mocha');
 var path = require('path');
 var assert = require('assert');
-var gulp = require('gulp');
 var bundle = require('../');
 
 var fixtures = path.join.bind(path, __dirname, 'fixtures');
