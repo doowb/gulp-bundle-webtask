@@ -12,8 +12,8 @@ var source = require('vinyl-source-stream');
 module.exports = function(filepath, filename, options) {
   if (typeof filename === 'object') {
     options = filename;
-    filename = 'bundle.js'
-  };
+    filename = 'bundle.js';
+  }
 
   options = options || {};
 
