@@ -20,17 +20,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "keywords": [
-    "browserify",
-    "bundle",
-    "gulp",
-    "gulp-plugin",
-    "gulp-uglify",
-    "gulpplugin",
-    "plugin",
-    "uglify",
-    "webtask"
-  ],
   "dependencies": {
     "browserify": "^13.1.0",
     "extend-shallow": "^2.0.1",
@@ -48,6 +37,17 @@
     "gulp-mocha": "^3.0.1",
     "mocha": "^3.0.2"
   },
+  "keywords": [
+    "browserify",
+    "bundle",
+    "gulp",
+    "gulp-plugin",
+    "gulp-uglify",
+    "gulpplugin",
+    "plugin",
+    "uglify",
+    "webtask"
+  ],
   "verb": {
     "toc": false,
     "layout": "default",
@@ -64,10 +64,10 @@
       "list": []
     },
     "reflinks": [
-      "verb",
-      "verb-generate-readme",
       "browserify",
       "gulp-uglify",
+      "verb",
+      "verb-generate-readme",
       "webtask"
     ]
   }
