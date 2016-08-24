@@ -24,5 +24,18 @@
     "bundle",
     "gulp",
     "webtask"
-  ]
+  ],
+  "dependencies": {
+    "browserify": "^13.1.0",
+    "extend-shallow": "^2.0.1",
+    "find-pkg": "^0.1.2",
+    "gulp-uglify": "^2.0.0",
+    "through2": "^2.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "mocha": "^3.0.2"
+  }
 }
