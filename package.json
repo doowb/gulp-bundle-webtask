@@ -21,8 +21,14 @@
     "test": "mocha"
   },
   "keywords": [
+    "browserify",
     "bundle",
     "gulp",
+    "gulp-plugin",
+    "gulp-uglify",
+    "gulpplugin",
+    "plugin",
+    "uglify",
     "webtask"
   ],
   "dependencies": {
@@ -37,8 +43,32 @@
   "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-format-md": "^0.1.10",
     "gulp-istanbul": "^1.1.0",
     "gulp-mocha": "^3.0.1",
     "mocha": "^3.0.2"
+  },
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "related": {
+      "list": []
+    },
+    "reflinks": [
+      "verb",
+      "verb-generate-readme",
+      "browserify",
+      "gulp-uglify",
+      "webtask"
+    ]
   }
 }
