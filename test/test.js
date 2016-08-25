@@ -17,7 +17,7 @@ describe('gulp-bundle-webtask', function() {
     gulp.src('index.js', {cwd: fixtures('simple')})
       .pipe(bundle())
       .on('data', function(file) {
-        assert.equal(file.base, fixtures('simple'));
+        assert.equal(file.base, fixtures('simple/'));
         assert.equal(file.path, fixtures('simple/bundle.js'));
         assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
       })
@@ -29,7 +29,7 @@ describe('gulp-bundle-webtask', function() {
     gulp.src('index.js', {cwd: fixtures('simple')})
       .pipe(bundle('main.js'))
       .on('data', function(file) {
-        assert.equal(file.base, fixtures('simple'));
+        assert.equal(file.base, fixtures('simple/'));
         assert.equal(file.path, fixtures('simple/main.js'));
         assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
       })
@@ -41,7 +41,7 @@ describe('gulp-bundle-webtask', function() {
     gulp.src('index.js', {cwd: fixtures('complex')})
       .pipe(bundle())
       .on('data', function(file) {
-        assert.equal(file.base, fixtures('complex'));
+        assert.equal(file.base, fixtures('complex/'));
         assert.equal(file.path, fixtures('complex/bundle.js'));
         assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
       })
@@ -53,7 +53,7 @@ describe('gulp-bundle-webtask', function() {
     gulp.src('index.js', {cwd: fixtures('built-ins')})
       .pipe(bundle())
       .on('data', function(file) {
-        assert.equal(file.base, fixtures('built-ins'));
+        assert.equal(file.base, fixtures('built-ins/'));
         assert.equal(file.path, fixtures('built-ins/bundle.js'));
         assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
       })
