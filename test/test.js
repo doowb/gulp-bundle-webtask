@@ -2,6 +2,7 @@
 
 require('mocha');
 var path = require('path');
+var gulp = require('gulp');
 var assert = require('assert');
 var bundle = require('../');
 
@@ -13,7 +14,8 @@ describe('gulp-bundle-webtask', function() {
   });
 
   it('should bundle a simple project', function(cb) {
-    bundle('index.js', {cwd: fixtures('simple')})
+    gulp.src('index.js', {cwd: fixtures('simple')})
+      .pipe(bundle())
       .on('data', function(file) {
         assert.equal(file.base, fixtures('simple'));
         assert.equal(file.path, fixtures('simple/bundle.js'));
@@ -24,7 +26,8 @@ describe('gulp-bundle-webtask', function() {
   });
 
   it('should bundle a project and use a custom filename', function(cb) {
-    bundle('index.js', 'main.js', {cwd: fixtures('simple')})
+    gulp.src('index.js', {cwd: fixtures('simple')})
+      .pipe(bundle('main.js'))
       .on('data', function(file) {
         assert.equal(file.base, fixtures('simple'));
         assert.equal(file.path, fixtures('simple/main.js'));
@@ -35,7 +38,8 @@ describe('gulp-bundle-webtask', function() {
   });
 
   it('should bundle a complex project', function(cb) {
-    bundle('index.js', {cwd: fixtures('complex')})
+    gulp.src('index.js', {cwd: fixtures('complex')})
+      .pipe(bundle())
       .on('data', function(file) {
         assert.equal(file.base, fixtures('complex'));
         assert.equal(file.path, fixtures('complex/bundle.js'));
@@ -46,7 +50,8 @@ describe('gulp-bundle-webtask', function() {
   });
 
   it('should bundle a project with built in npm modules', function(cb) {
-    bundle('index.js', {cwd: fixtures('built-ins')})
+    gulp.src('index.js', {cwd: fixtures('built-ins')})
+      .pipe(bundle())
       .on('data', function(file) {
         assert.equal(file.base, fixtures('built-ins'));
         assert.equal(file.path, fixtures('built-ins/bundle.js'));
