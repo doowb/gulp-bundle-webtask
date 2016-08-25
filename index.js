@@ -60,6 +60,7 @@ module.exports = function bundle(filename, options) {
     });
   }, function(cb) {
     var res = null;
+    var stream = this;
 
     // create browserify instance
     var b = utils.browserify(filepath, opts);
@@ -78,10 +79,12 @@ module.exports = function bundle(filename, options) {
       .pipe(utils.through.obj(function(file, enc, next) {
         file.contents = new Buffer('exports = module.exports;\n' + file.contents.toString());
         res = file;
-        next();
-      }, function(next) {
-        cb(null, res);
-        next();
-      }));
+        next(null, file);
+      }))
+      .on('data', function() {})
+      .on('end', function() {
+        stream.push(res);
+        cb();
+      });
   });
 };
