@@ -9,14 +9,13 @@ var utils = require('./lib/utils');
  *
  * ```js
  * gulp.task('bundle', function() {
- *   return bundle('index.js')
+ *   return gulp.src('index.js')
+ *     .pipe(bundle())
  *     .pipe(gulp.dest('dist'));
  * });
  * ```
- * @param  {String} `filepath` Source filepath for the entry point of the bundled application.
- * @param  {String} `filename` Filename to use when naming the bundled file. Defaults to `bundle.js`.
+ * @param  {String} `filename` Optional filename to use when naming the bundled file. Defaults to `bundle.js`.
  * @param  {String} `options` Additional options to pass to [browserify][].
- * @param  {String} `options.cwd` Specify a `cwd` to use when resolving the `filepath` and as the base path for the `filename`. Defaults to `process.cwd()`.
  * @return {Stream} Returns a stream that can be piped to (as in the example).
  * @api public
  */
