@@ -1,7 +1,7 @@
 {
   "name": "gulp-bundle-webtask",
   "description": "Gulp plugin for browserifying and bundling your source code before deploying to webtask.io.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/doowb/gulp-bundle-webtask",
   "author": "Brian Woodward (https://github.com/doowb)",
   "repository": "doowb/gulp-bundle-webtask",
