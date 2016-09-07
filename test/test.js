@@ -49,12 +49,36 @@ describe('gulp-bundle-webtask', function() {
       .once('end', cb);
   });
 
+  it('should bundle an es6 project', function(cb) {
+    gulp.src('index.js', {cwd: fixtures('es6')})
+      .pipe(bundle({babelify: true}))
+      .on('data', function(file) {
+        assert.equal(file.base, fixtures('es6/'));
+        assert.equal(file.path, fixtures('es6/bundle.js'));
+        assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
+      })
+      .once('error', cb)
+      .once('end', cb);
+  });
+
   it('should bundle a project with built in npm modules', function(cb) {
     gulp.src('index.js', {cwd: fixtures('built-ins')})
       .pipe(bundle())
       .on('data', function(file) {
         assert.equal(file.base, fixtures('built-ins/'));
         assert.equal(file.path, fixtures('built-ins/bundle.js'));
+        assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
+      })
+      .once('error', cb)
+      .once('end', cb);
+  });
+
+  it('should not minify a bundle when minify is false', function(cb) {
+    gulp.src('index.js', {cwd: fixtures('simple')})
+      .pipe(bundle({minify: false}))
+      .on('data', function(file) {
+        assert.equal(file.base, fixtures('simple/'));
+        assert.equal(file.path, fixtures('simple/bundle.js'));
         assert.equal(file.contents.toString().indexOf('exports = module.exports;\n'), 0);
       })
       .once('error', cb)
