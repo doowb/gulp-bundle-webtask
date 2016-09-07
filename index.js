@@ -1,6 +1,5 @@
 'use strict';
 
-var path = require('path');
 var utils = require('./lib/utils');
 
 /**
@@ -16,6 +15,8 @@ var utils = require('./lib/utils');
  * ```
  * @param  {String} `filename` Optional filename to use when naming the bundled file. Defaults to `bundle.js`.
  * @param  {String} `options` Additional options to pass to [browserify][].
+ * @param  {Boolean} `options.minify` Disable minification by setting this option to `false`. Defaults to `true`.
+ * @param  {Boolean|Object} `options.babelify` When set to `true`, uses [babelify][]. Set as an object to pass custom options to the [babelify][] transform. Defaults to `false`.
  * @return {Stream} Returns a stream that can be piped to (as in the example).
  * @api public
  */
@@ -44,6 +45,10 @@ module.exports = function bundle(filename, options) {
   };
 
   var opts = utils.extend({}, defaults, options);
+  var babelifyOpts = {
+    global: true,
+    presets: ['es2015']
+  };
 
   var filepath, base, excluded;
   return utils.through.obj(function(file, enc, cb) {
@@ -71,11 +76,15 @@ module.exports = function bundle(filename, options) {
       return acc;
     }, b);
 
+    if (options.babelify) {
+      b.transform('babelify', typeof options.babelify === 'object' ? options.babelify : babelifyOpts);
+    }
+
     // bundle
     b.bundle()
       .pipe(utils.source(filename, base))
       .pipe(utils.buffer())
-      .pipe(utils.uglify())
+      .pipe(options.minify === false ? utils.through.obj() : utils.uglify())
       .pipe(utils.through.obj(function(file, enc, next) {
         file.contents = new Buffer('exports = module.exports;\n' + file.contents.toString());
         res = file;
